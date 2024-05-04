@@ -1,0 +1,28 @@
+---
+app-id: local.zecakeh.ZbusFlatpakPortal
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+- org.freedesktop.Sdk.Extension.rust-stable
+command: zbus-flatpak-portal
+separate-locales: false
+
+build-options:
+  append-path: "/usr/lib/sdk/rust-stable/bin"
+  build-args:
+  - "--share=network"
+
+finish-args:
+- "--env=RUST_LOG=debug"
+
+modules:
+- name: appstream
+  buildsystem: simple
+  build-commands:
+  - cargo build
+  - mkdir -p /app/bin
+  - mv target/debug/zbus-flatpak-portal /app/bin
+  sources:
+  - type: dir
+    path: .

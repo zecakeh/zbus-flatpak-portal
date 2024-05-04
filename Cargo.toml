@@ -1,0 +1,13 @@
+[package]
+name = "zbus-flatpak-portal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+[dependencies.zbus]
+git = "https://github.com/dbus2/zbus"
+# rev = "3124569792516a50c8dce02f6f96601e6352361c" # works
+# rev = "8fb1626f7faed84673914e691415270422d82f4a" # hangs
+rev = "bf57c0da1cb740c1839965e7b3819977f9d20c75" # errors
